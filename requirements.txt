@@ -2,12 +2,11 @@ pandas
 numpy
 datetime
 dash
+dateutil
+apscheduler
 dash_core_components
 dash_html_components
 dash_bootstrap_components
 plotly
 requests
-lxml
-beautifulsoup4
-nba_api
 gunicorn
