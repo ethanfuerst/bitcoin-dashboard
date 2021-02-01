@@ -1,7 +1,6 @@
 import time
 import datetime
 from dateutil.relativedelta import relativedelta
-from apscheduler.schedulers.background import BackgroundScheduler
 from dash.dependencies import Input, Output
 import dash
 import dash_html_components as html
