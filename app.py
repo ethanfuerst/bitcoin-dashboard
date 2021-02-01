@@ -35,7 +35,8 @@ def get_new_data():
     return df[['Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap', 'Date']].copy()
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
-                                                                                                                                                
+server = app.server
+
 df = get_new_data()
 
 sched = BackgroundScheduler()
