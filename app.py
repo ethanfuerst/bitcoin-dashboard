@@ -17,7 +17,6 @@ API_KEY = os.environ["api_key"]
 
 
 def get_new_data():
-    print('Refreshing the data...')
     url = 'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey={API_KEY}'
     request = requests.get(url)
     df = pd.DataFrame.from_dict(request.json()['Time Series (Digital Currency Daily)'], orient='index')
@@ -31,17 +30,12 @@ def get_new_data():
     df[['Open', 'High', 'Low', 
         'Close', 'Volume', 'Market Cap']] = df[['Open', 'High', 'Low', 
             'Close', 'Volume', 'Market Cap']].astype(float).round(2).copy()
-    print('Data refreshed.')
     return df[['Open', 'High', 'Low', 'Close', 'Volume', 'Market Cap', 'Date']].copy()
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/chriddyp/pen/bWLwgP.css'])
 server = app.server
 
 df = get_new_data()
-
-sched = BackgroundScheduler()
-sched.add_job(get_new_data, 'cron', hour=0, minute=30)
-sched.start()
 
 app.layout = html.Div([
     html.Center([
@@ -118,7 +112,9 @@ def update_graph(time_period):
     )
 
     fig.update_layout(
-        xaxis_rangeslider_visible=False
+        height=600,
+        xaxis_rangeslider_visible=False,
+        plot_bgcolor='#cccccc'
     )
     return fig
 
