@@ -2,7 +2,6 @@ pandas
 numpy
 datetime
 dash
-dateutil
 apscheduler
 dash_core_components
 dash_html_components
